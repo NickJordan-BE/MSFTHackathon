@@ -7,3 +7,4 @@ Flask-RESTful
 python-dotenv
 gunicorn
 openai
+langgraph
