@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import NavBar from '../components/NavBar/NavBar'
 import ChatApi from '../api/ChatApi'
 
@@ -23,7 +22,7 @@ const ChatBox = () => {
     try {
       const response = await ChatApi.post("/chat", {
         messages: text,
-        thread_id: threadId
+        thread_id: "abc123",
       })
       
       console.log(response.data)
