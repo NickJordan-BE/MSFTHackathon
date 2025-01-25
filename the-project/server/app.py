@@ -8,7 +8,6 @@ app = Flask(__name__)
 CORS(app)
 
 
-
 # app routes for the backend
 @app.route('/api/endpoint', methods=['GET'])
 def home():
