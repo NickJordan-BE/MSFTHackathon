@@ -6,3 +6,4 @@ psycopg2-binary
 Flask-RESTful
 python-dotenv
 gunicorn
+openai
