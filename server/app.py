@@ -17,12 +17,15 @@ CORS(app)
 @app.route('/chat', methods=['POST'])
 def chat():
     # Ensure the content type is JSON
+    print("Here")
     if not request.is_json:
         return jsonify({"error": "Invalid content type. Expected application/json."}), 400
-
+    print("Here2")
     try:
         # Parse the JSON payload
         data = request.get_json()
+        print("Here3")
+        print(data)
 
         # Check if 'messages' is in the payload and is a list
         if 'message' not in data:
@@ -33,7 +36,7 @@ def chat():
 
         message = data['message']
         thread_id = data['thread_id']
-
+        print("Here4")
         # Return newest message
         return sendChat(message, thread_id), 200
 

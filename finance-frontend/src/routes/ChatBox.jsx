@@ -17,22 +17,28 @@ const ChatBox = () => {
   // Handle sending a message
   const handleSend = async () => {
     if (text.trim() === "") return; // Prevent sending empty messages
-
+    
     toggleVis(); // Ensure the chat becomes visible when a message is sent
+    let newMessages = [...messages, { sender: "user", content: text }];
+    
     try {
-      const response = await ChatApi.post("/chat", {
-        messages: text,
+      await ChatApi.post("/chat", {
+        message: text.trim(),
         thread_id: "abc123",
-      })
-      
-      console.log(response.data)
+      }, {headers: {
+        'Content-Type': 'application/json'
+      }}).then((response) => {
+        console.log(response.data);
+        newMessages = [...newMessages, { sender: "bot", content: response.data }];
+      });
 
     } catch (err) {
       console.log(err)
     }
 
+    setMessages(newMessages);
+
     // Add the user's message to the messages array
-    setMessages([...messages, { sender: "user", content: text }]);
     setText(""); // Clear the input field
   };
 

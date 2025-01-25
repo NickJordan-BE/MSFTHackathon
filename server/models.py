@@ -27,3 +27,30 @@ def sendChat(message, thread_id):
     )
     print(response)
     return response["messages"][-1].content
+
+market_items = [
+    "gasoline",
+    "gold",
+    "silver",
+    "copper",
+    "platinum",
+    "palladium",
+    "corn",
+    "wheat",
+    "soybeans",
+    "sugar",
+    "cotton",
+    "cocoa",
+    "coffee",
+    "orange juice",
+]
+
+def getMarketValues():
+    config = {"configurable": {"thread_id": "market_values"}}
+    for item in market_items:
+        response = agent_executor.invoke(
+            {"messages": HumanMessage(content=f"Get market value of {item}.")}, config
+        )
+        print(response)
+
+#getMarketValues()
