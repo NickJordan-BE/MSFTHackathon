@@ -6,3 +6,9 @@ psycopg2-binary
 Flask-RESTful
 python-dotenv
 gunicorn
+openai
+langchain-community
+langgraph
+langchain-anthropic
+tavily-python
+langgraph-checkpoint-sqlite
