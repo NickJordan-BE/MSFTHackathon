@@ -1,6 +1,11 @@
 import { useState } from 'react';
+import React, { useState } from 'react'
+import NavBar from '../components/NavBar/NavBar'
+import ChatApi from '../api/ChatApi'
 
-function ChatBox() {
+
+
+const ChatBox = () => {
   const [text, setText] = useState(""); // Text from the textarea
   const [messages, setMessages] = useState([]); // Store messages
   const [isChatVisible, setIsChatVisible] = useState(false); // Manage chat visibility
@@ -11,18 +16,31 @@ function ChatBox() {
   };
 
   // Handle sending a message
-  const handleSend = () => {
+  const handleSend = async () => {
     if (text.trim() === "") return; // Prevent sending empty messages
 
     toggleVis(); // Ensure the chat becomes visible when a message is sent
+    try {
+      const response = await ChatApi.post("/chat", {
+        messages: text,
+        thread_id: threadId
+      })
+      
+      console.log(response.data)
+
+    } catch (err) {
+      console.log(err)
+    }
 
     // Add the user's message to the messages array
     setMessages([...messages, { sender: "user", content: text }]);
     setText(""); // Clear the input field
   };
 
+
   return (
     <>
+      <NavBar />
       <h1>Title</h1>
       <h2>Subtitle</h2>
 
