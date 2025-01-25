@@ -1,67 +1,39 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
 
 import "./NavBar.css"
 
 const NavBar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const navRef = useRef(null);
-    const burgerRef = useRef(null);
+  return (
+    <div>
+            <div className="nav">
+        <div className="container">
+            <div className="btn">Chat</div>
+            <div className="btn">Prices</div>
+            <div className="btn">Budget Analyzer</div>
+            <svg
+            className="outline"
+            overflow="visible"
+            width="400"
+            height="60"
+            viewBox="0 0 400 60"
+            xmlns="http://www.w3.org/2000/svg"
+            >
+            <rect
+                className="rect"
+                pathLength="100"
+                x="0"
+                y="0"
+                width="400"
+                height="60"
+                fill="transparent"
+                strokeWidth="5"
+            ></rect>
+            </svg>
+        </div>
+        </div>
 
-    const toggleMenu = () => {
-        console.log(isOpen);
-        setIsOpen(!isOpen);
-    };
-
-    useEffect(() => {
-        const handleOutsideClick = (event) => {
-            if (
-                navRef.current
-                && !navRef.current.contains(event.target)
-                && burgerRef.current
-                && !burgerRef.current.contains(event.target)
-            ) {
-                setIsOpen(false);
-            }
-        };
-
-        const handleResize = () => {
-            setIsOpen(false);
-        }
-
-        document.addEventListener("mousedown", handleOutsideClick);
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            document.removeEventListener("mousedown", handleOutsideClick);
-            window.removeEventListener("resize", handleResize);
-        };
-
-    }, []);
-
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            const timeoutId = setTimeout(() => {
-            document.body.style.overflow = 'auto';
-            }, 300);
-
-            return () => clearTimeout(timeoutId);
-        }
-    }, [isOpen]);
-
-
-    return (
-
-        <nav className='navbar'>
-            <div id='nav-links' ref={navRef} className={isOpen ? 'active' : ''}>
-                <div id='link-container'>
-                     <Link path="/">hecs0eci</Link>
-                </div>
-            </div>
-        </nav>
-    )
+    </div>
+  )
 }
 
 export default NavBar
