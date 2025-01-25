@@ -25,15 +25,22 @@ def chat():
         data = request.get_json()
 
         # Check if 'messages' is in the payload and is a list
-        if 'messages' not in data or not isinstance(data['messages'], list):
-            return jsonify({"error": "Invalid payload. 'messages' must be a JSON array."}), 400
+        if 'message' not in data:
+            return jsonify({"error": "Invalid payload. 'message' must be a string"}), 400
+        
+        if 'thread_id' not in data:
+            return jsonify({"error": "Invalid payload. 'thread_id' must be a string"}), 400
 
-        messages = data['messages']
+        message = data['message']
+        thread_id = data['thread_id']
 
-        return sendChat(messages), 200
+        # Return newest message
+        return sendChat(message, thread_id), 200
 
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
