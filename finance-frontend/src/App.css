@@ -3,8 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: black;
 }
-
 
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
@@ -19,13 +19,42 @@
 .read-the-docs {
   color: #888;
 }
+
 .chatbox {
   border-radius: 5px;
-  background: linear-gradient(black, rgb(32, 32, 32));
+  background: linear-gradient(180deg, black, rgb(32, 32, 32));
   resize: none;
 
 }
 
 .send-button {
   position: absolute;
+  cursor: pointer;
+
+}
+
+.user-message {
+  border-radius: 20px;
+}
+.output-message {
+  border-radius: 20px;
+}
+
+.chat-container {
+  background-color: #5b5b5b;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  overflow-y: auto;
+  justify-content: flex-start;
+  flex-grow: 1;
+  resize: none;
+  height: 50vh;
+}
+
+.hidden {
+  opacity: 0;
+}
+.show {
+  opacity: 1;
 }
